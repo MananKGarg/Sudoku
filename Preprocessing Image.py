@@ -16,7 +16,7 @@ def Preprocess(image): # returns perspective transformed binary image of sudoku 
         area = cv2.contourArea(cnt)
 
         if area > 4000:
-            # cv2.drawContours(img, cnt, -1,(0,0,255),3)
+
             approx = cv2.approxPolyDP(cnt, 20, True)
             cv2.drawContours(img, [approx], 0, (255, 0, 0), 5)
             # print(approx)
@@ -25,7 +25,6 @@ def Preprocess(image): # returns perspective transformed binary image of sudoku 
             screenpts = np.float32([[0, 0], [449, 0], [0, 449], [449, 449]])
 
             matrix = cv2.getPerspectiveTransform(pts, screenpts)
-
             result = cv2.warpPerspective(thg, matrix, (450, 450))
 
     return(result)
